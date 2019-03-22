@@ -9,6 +9,10 @@ import { PostParameters } from '../../models/post.Parameter';
 })
 export class PostListComponent implements OnInit {
 
+  // 设置默认属性，即PostParameters中的constructor(init?: Partial<PostParameters>) {
+    //     super(init);
+    //     Object.assign(this, init);
+    // }
   postParameter = new PostParameters({ orderBy: 'id desc', pageSize: 10, pageIndex: 0 });
 
   constructor(private postService:PostService) { }
