@@ -4,7 +4,24 @@
 
 export const environment = {
   production: false,
-  apiUrlBase:"https://localhost:6001/api"
+  apiUrlBase:"/api",
+  openIdConnectSettings: {
+    // authority为identityServer4的地址
+    authority: 'https://localhost:5001/',
+    // 需在identityServer4项目中设置
+    client_id: 'people-client',
+    // 登录成功后跳转到的地址
+    redirect_uri: 'http://localhost:4200/signin-oidc',
+    scope: 'openid profile email restapi',
+    // 需要返回的内容
+    response_type: 'id_token token',
+    // 登出后返回的地址
+    post_logout_redirect_uri: 'http://localhost:4200/',
+    // 启用定时刷新动作，以便当用户操作过久时可以获得新的token
+    automaticSilentRenew: true,
+    // 重新获得token的地址
+    silent_redirect_uri: 'http://localhost:4200/redirect-silentrenew'
+  }
 };
 
 /*

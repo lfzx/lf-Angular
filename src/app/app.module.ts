@@ -9,18 +9,26 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
+import { SigninOidcComponent } from './shared/oidc/signin-oidc/signin-oidc.component';
+import { RedirectSilentRenewComponent } from './shared/oidc/redirect-silent-renew/redirect-silent-renew.component';
+import { RequireAuthenticatedUserRouteGuard } from './shared/oidc/require-authenticated-user-route.guard';
+import { OpenIdConnectService } from './shared/oidc/open-id-connect.service';
 
 registerLocaleData(en);
 
 const routes: Routes = [
   { path: 'people', loadChildren: './people/people.module#PeopleModule' },
+  { path: 'signin-oidc', component: SigninOidcComponent },
+  { path: 'redirect-silentrenew', component: RedirectSilentRenewComponent },
   {path:'**',redirectTo:'people'}
 ];
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SigninOidcComponent,
+    RedirectSilentRenewComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +37,9 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    OpenIdConnectService,
+    RequireAuthenticatedUserRouteGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

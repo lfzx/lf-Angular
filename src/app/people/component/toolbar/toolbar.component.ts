@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { OpenIdConnectService } from 'src/app/shared/oidc/open-id-connect.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,7 +11,7 @@ export class ToolbarComponent implements OnInit {
   @Output() toggleSidenav = new EventEmitter<void>();
 
   constructor(
-    
+    private openIdConnectService: OpenIdConnectService
   ) { }
 
   ngOnInit() {

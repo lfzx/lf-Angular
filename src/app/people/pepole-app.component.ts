@@ -13,7 +13,9 @@ export class PepoleAppComponent implements OnInit {
     iconRegistry.addSvgIcon('baseline-more_vert', sanitizer
     .bypassSecurityTrustResourceUrl('/assets/dots-vertical.svg'));
     iconRegistry.addSvgIcon('baseline-menu', sanitizer
-    .bypassSecurityTrustResourceUrl('/assets/menu.svg'));    
+    .bypassSecurityTrustResourceUrl('/assets/menu.svg'));
+    iconRegistry.addSvgIcon('baseline-add', sanitizer
+    .bypassSecurityTrustResourceUrl('/assets/plus-circle.svg'));    
   }
 
   ngOnInit() {
