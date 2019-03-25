@@ -20,13 +20,14 @@ export class PostListComponent implements OnInit {
     //     super(init);
     //     Object.assign(this, init);
     // }
-  postParameter = new PostParameters({ orderBy: 'id desc', pageSize: 10, pageIndex: 0 });
+  postParameter = new PostParameters({ orderBy: 'id desc', pageSize: 5, pageIndex: 0 });
 
   constructor(
     private openIdConnectService: OpenIdConnectService,
     private postService:PostService) { }
 
   ngOnInit() {
+    this.posts = [];
     this.getPosts();
   }
 
@@ -36,8 +37,17 @@ export class PostListComponent implements OnInit {
       this.pageMeta = JSON.parse(resp.headers.get('X-Pagination')) as PageMeta;
       // 将resp里的属性都复制出来，建立一个新的对象，新的对象的类型是result-with-links
       let result = { ...resp.body } as ResultWithLinks<Post>;
-      this.posts = result.value;
+      this.posts = this.posts.concat(result.value);
     });
+  }
+
+  // 滚动触发
+  onScroll() {
+    console.log('scrolled down!!');
+    this.postParameter.pageIndex++;
+    if (this.postParameter.pageIndex < this.pageMeta.pageCount) {
+      this.getPosts();
+    }
   }
  
 }

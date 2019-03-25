@@ -4,6 +4,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { PostParameters } from '../models/post.Parameter';
 import { Post } from '../models/post';
 import { PostAdd } from '../models/post-add';
+import { Observable } from 'rxjs';
+import { Operation } from 'fast-json-patch';
 
 
 @Injectable({
@@ -28,6 +30,10 @@ export class PostService extends BaseService{
     });
   }
 
+  getPostById(id: number | string): Observable<Post> {
+    return this.http.get<Post>(`${this.apiUrlBase}/posts/${id}`);
+  }
+
   addPost(post: PostAdd) {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -37,6 +43,13 @@ export class PostService extends BaseService{
     };
 
     return this.http.post<Post>(`${this.apiUrlBase}/posts`, post, httpOptions);
+  }
+
+  partiallyUpdatePost(id: number | string, patchDocument: Operation[]): Observable<any> {
+    return this.http.patch(`${this.apiUrlBase}/posts/${id}`, patchDocument,
+      {
+        headers: { 'Content-Type': 'application/json-patch+json' }
+      });
   }
 
 }

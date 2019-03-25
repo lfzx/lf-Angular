@@ -3,13 +3,16 @@
   <mat-drawer #drawer class="app-sidenav mat-elevation-z10" [mode]="isScreenSmall() ? 'over' : 'side'" [opened]="!isScreenSmall()">
 
     <mat-toolbar color="primary">
-      Blog Demo
+      People Demo
     </mat-toolbar>
 
     <mat-nav-list>
-      <mat-list-item role="listitem" routerLink="/blog/post-list">Post List</mat-list-item>
+      <mat-list-item role="listitem" routerLink="/people/post-list">Post List</mat-list-item>
     </mat-nav-list>
 
+    <mat-nav-list>
+      <mat-list-item role="listitem" routerLink="/people/post-table">Post Table</mat-list-item>
+    </mat-nav-list>
 
   </mat-drawer>
 

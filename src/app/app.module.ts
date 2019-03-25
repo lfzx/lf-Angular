@@ -13,6 +13,8 @@ import { SigninOidcComponent } from './shared/oidc/signin-oidc/signin-oidc.compo
 import { RedirectSilentRenewComponent } from './shared/oidc/redirect-silent-renew/redirect-silent-renew.component';
 import { RequireAuthenticatedUserRouteGuard } from './shared/oidc/require-authenticated-user-route.guard';
 import { OpenIdConnectService } from './shared/oidc/open-id-connect.service';
+import { GlobalErrorHandler } from './shared/global-error-handler';
+import { ErrorLoggerService } from './shared/error-logger.service';
 
 registerLocaleData(en);
 
@@ -39,7 +41,10 @@ const routes: Routes = [
   ],
   providers: [
     OpenIdConnectService,
-    RequireAuthenticatedUserRouteGuard],
+    RequireAuthenticatedUserRouteGuard,
+    GlobalErrorHandler,
+    ErrorLoggerService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

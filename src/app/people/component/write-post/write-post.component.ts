@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PostService } from '../../services/post.service';
 import { TinymceService } from '../../services/tinymce.service';
 import { MatSnackBar } from '@angular/material';
+import { ValidationErrorHandler } from 'src/app/shared/validation-error-handler';
 
 @Component({
   selector: 'app-write-post',
@@ -41,7 +42,9 @@ export class WritePostComponent implements OnInit {
         },
         validationResult => {
           this.snackBar.open('There are validation errors!', 'Close', { duration: 3000 });
-          // ValidationErrorHandler.handleFormValidationErrors(this.postForm, validationResult);
+          // 表单提交时，如果前端的验证通过，但是到后端api验证未通过，会返回422状态码，即会走到这里
+          // 需要把后台验证错误信息分别对应到前台的每个属性上，并对应到属性具体的错误类型上
+          ValidationErrorHandler.handleFormValidationErrors(this.postForm, validationResult);
         });
     }
   }
