@@ -22,6 +22,7 @@ import { PostTableComponent } from './component/post-table/post-table.component'
 import { EnsureAcceptHeaderInterceptor } from '../shared/ensure-accept-header.interceptor';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SafeHtmlPipe } from '../shared/safe-html.pipe';
+import { TestComponent } from './component/test/test.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { SafeHtmlPipe } from '../shared/safe-html.pipe';
       EditPostComponent,
       PostDetailComponent,
       SafeHtmlPipe,
-      PostTableComponent],
+      PostTableComponent,
+      TestComponent],
   providers:[
     PostService,
     TinymceService,

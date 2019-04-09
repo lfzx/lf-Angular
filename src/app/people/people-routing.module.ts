@@ -7,6 +7,7 @@ import { WritePostComponent } from './component/write-post/write-post.component'
 import { EditPostComponent } from './component/edit-post/edit-post.component';
 import { PostDetailComponent } from './component/post-detail/post-detail.component';
 import { PostTableComponent } from './component/post-table/post-table.component';
+import { TestComponent } from './component/test/test.component';
 
 const routes: Routes = [
   {path:'',component:PepoleAppComponent,
@@ -22,6 +23,7 @@ const routes: Routes = [
       canActivate: [RequireAuthenticatedUserRouteGuard]
     },
     { path: 'post-detail/:id', component: PostDetailComponent },
+    { path: 'test', component: TestComponent },
     { path: '**', redirectTo: 'post-list'}
   ]
 }
